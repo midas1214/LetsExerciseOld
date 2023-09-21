@@ -54,6 +54,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\UDPReceive.cs" />
+    <Compile Include="Assets\UserTracking.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -16,7 +16,7 @@ cap.set(4, height)
 # Pose Detector
 detector = PoseDetector()
 
-posList = []
+#posList = []
 # Communication
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # UDP
 serverAddressPort = ("127.0.0.1", 5052)
@@ -30,12 +30,12 @@ while True:
     data = []
     if bboxInfo:
         # Get the landmark list
-        lmString = ''
+        #lmString = ''
         for landmark in lmList:
-            data.extend([landmark[0], height - landmark[1], landmark[2]])
-            lmString += f'{landmark[1]}, {img.shape[0] - landmark[2]}, {landmark[3]}'
+            data.extend([landmark[1], height - landmark[2], landmark[3]])
+            #lmString += f'{landmark[1]}, {img.shape[0] - landmark[2]}, {landmark[3]}'
 
-        posList.append(lmString)
+        #posList.append(lmString)
 
         sock.sendto(str.encode(str(data)), serverAddressPort)
 
