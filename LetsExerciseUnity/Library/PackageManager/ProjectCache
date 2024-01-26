@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638409966260000000
+      ticks: 638412454960000000
     m_Hash: 1387684734
   m_LockFileStatus:
     m_FilePath: /Users/user/Desktop/LetsExercise/LetsExerciseUnity/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638409966330000000
+      ticks: 638412454960000000
     m_Hash: 2986608602
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}

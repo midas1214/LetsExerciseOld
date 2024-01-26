@@ -61,6 +61,7 @@
     <Compile Include="Assets/Scripts/AnimationCode.cs" />
     <Compile Include="Assets/unity-chan!/Unity-chan! Model/Scripts/SpringManager.cs" />
     <Compile Include="Assets/Scripts/ImageReceive.cs" />
+    <Compile Include="Assets/Scripts/ButtonEvent.cs" />
     <Compile Include="Assets/unity-chan!/Unity-chan! Model/Scripts/SpringBone.cs" />
     <Compile Include="Assets/Scripts/AutoSave.cs" />
     <Compile Include="Assets/unity-chan!/Unity-chan! Model/Scripts/AutoBlink.cs" />

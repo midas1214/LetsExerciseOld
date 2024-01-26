@@ -348,6 +348,7 @@
 -r:"Library/Bee/artifacts/200b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/AnimationCode.cs"
 "Assets/Scripts/AutoSave.cs"
+"Assets/Scripts/ButtonEvent.cs"
 "Assets/Scripts/ImageReceive.cs"
 "Assets/Scripts/LineCode.cs"
 "Assets/Scripts/UDPReceive.cs"
