@@ -11,6 +11,8 @@ check_point = pose_db["pose_name"]["check_angle"]
 file_path = pose_db["pose_name"]["path"]
 video_frame_width = pose_db["pose_name"]["video_size"]["width"]
 video_frame_height = pose_db["pose_name"]["video_size"]["height"]
+
+
 with open(file_path, "r") as lm_file:
     lines = lm_file.readlines()
 
@@ -86,9 +88,11 @@ while counter < len(lines):
         hand_lmlist = hand['lmList']
         fingers = hand_detector.fingersUp(hand)
         if fingers == [0,1,0,0,0]:
+            # 傳送食指 x , y 值
             index_finger = hand_lmlist[8][0], hand_lmlist[8][1]
             index_finger_json = json.dumps(index_finger)
             udp_sock.sendto(str.encode(index_finger_json), serverAddressPort)
+        # 兩隻手指頭 點擊
         if fingers == [0,1,1,0,0]:
             index_finger = hand_lmlist[8][0], hand_lmlist[8][1],1
             index_finger_json = json.dumps(index_finger)

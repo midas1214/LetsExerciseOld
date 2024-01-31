@@ -25,12 +25,15 @@ public class UDPReceive : MonoBehaviour
     private float[] transformPosition = new float[3];
 
     public RectTransform canvasRectTransform;
+    public Camera mainCam;
 
     float canva_xMin;
     float canva_xMax;
     float canva_yMin;
     float canva_yMax;
     string[] parts = {"00","00"};
+
+    float nearClipPlane;
 
     public void Start()
     {
@@ -49,6 +52,7 @@ public class UDPReceive : MonoBehaviour
         canva_yMin = canvasRectTransform.rect.yMin;
         canva_yMax = canvasRectTransform.rect.yMax;
 
+        nearClipPlane = mainCam.nearClipPlane;
 
     }
 
@@ -67,13 +71,24 @@ public class UDPReceive : MonoBehaviour
 
                 parts = data.Trim('[', ']').Split(',');
 
-                float normalizedValue1 = normalize(float.Parse(parts[0]), 0, 1280, canva_xMin, canva_xMax)+canva_xMax;
-                float normalizedValue2 = canva_yMax - normalize(float.Parse(parts[1]), 0, 1000, canva_yMin,canva_yMax) - 10;
+                float normalizedValue1 = normalize(float.Parse(parts[0]), 0, 1280, canva_xMin, canva_xMax);
+                float normalizedValue2 = canva_yMax - normalize(float.Parse(parts[1]), 0, 1000, canva_yMin,canva_yMax);
 
-                transformPosition[0] = normalizedValue1;
-                transformPosition[1] = normalizedValue2;
 
-                if (printToConsole) { print(data); }
+                RunOnMainThread(() =>
+                {
+                    Vector3 screenPos = new Vector3(normalizedValue1 * mainCam.pixelWidth, normalizedValue2 * mainCam.pixelHeight, 0);
+
+                    Vector3 worldPos = mainCam.ScreenToWorldPoint(screenPos);
+
+                    transformPosition[0] = worldPos.x;
+                    transformPosition[1] = worldPos.y;
+
+                    //Debug.Log(worldPos);
+
+                    if (printToConsole) { print(data); }
+                });
+
 
             }
             catch (Exception err)
@@ -99,7 +114,11 @@ public class UDPReceive : MonoBehaviour
         return (value - minFrom) / (maxFrom - minFrom) * (maxTo - minTo) + minTo;
     }
 
-    
+    private void RunOnMainThread(Action action)
+    {
+        UnityMainThreadDispatcher.Instance().Enqueue(action);
+    }
+
 
 
 }
