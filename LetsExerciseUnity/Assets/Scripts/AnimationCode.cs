@@ -15,7 +15,7 @@ public class AnimationCode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lines = System.IO.File.ReadLines("Assets/Scripts/lmList.txt").ToList();
+        lines = System.IO.File.ReadLines("Assets/PoseDataset/lmList.txt").ToList();
     }
 
     // Update is called once per frame

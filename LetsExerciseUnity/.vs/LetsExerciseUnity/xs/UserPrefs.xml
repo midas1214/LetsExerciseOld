@@ -1,32 +1,28 @@
 ﻿<Properties StartupConfiguration="{8C33CD8B-4ADA-A399-9235-9A3E29F627F4}|">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PipeServer.cs">
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="05cea1d6-b3e1-438c-a1f8-ec1f643e8836" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ButtonEvent.cs">
     <Files>
-      <File FileName="Assets/ImageReceive.cs" Line="48" Column="1" />
-      <File FileName="Assets/UDPReceive.cs" Line="32" Column="27" />
-      <File FileName="Assets/Scripts/Avatar.cs" Line="77" Column="18" />
-      <File FileName="Assets/Scripts/PipeServer.cs" Line="16" Column="28" />
-      <File FileName="Assets/Scripts/ServerUDP.cs" Line="26" Column="10" />
-      <File FileName="Assets/Scripts/CalibrationTimer.cs" Line="44" Column="58" />
+      <File FileName="Assets/Scripts/CountDownTimer.cs" Line="37" Column="15" />
+      <File FileName="Assets/Scripts/AnimationCode.cs" Line="18" Column="61" />
+      <File FileName="Assets/Scripts/ButtonEvent.cs" Line="30" Column="27" />
+      <File FileName="Assets/Scripts/UDPReceive.cs" Line="85" Column="52" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="LetsExerciseUnity" expanded="True">
             <Node name="Assets" expanded="True">
-              <Node name="Scripts" expanded="True">
-                <Node name="PipeServer.cs" selected="True" />
-              </Node>
+              <Node name="Scripts" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="02655e54-9394-414b-9caf-2a68fa4bc6af" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

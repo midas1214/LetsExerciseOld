@@ -24,10 +24,19 @@ public class ButtonEvent : MonoBehaviour
 
     }
 
-    private void Button1Click()
+    private void ButtonClick(Button btn)
     {
-        Debug.Log("Button 1 Clicked!");
-        // Add your custom logic for Button 1 click
+
+        if (btn.name == "1"){
+
+
+        }
+        else if (btn.name == "2")
+        {
+
+        }
+
+
     }
 
     public void Check_if_button()
@@ -39,6 +48,7 @@ public class ButtonEvent : MonoBehaviour
             {
                 yes = 1;
                 Debug.Log("RawImage is touching Button: " + btn.name);
+                ButtonClick(btn);
                 canClickButton = false;
                 StartCoroutine(DelayedAction());
 

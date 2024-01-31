@@ -57,7 +57,7 @@ public class PipeServer : MonoBehaviour
         virtualNeck = new GameObject("VirtualNeck").transform;
         virtualHip = new GameObject("VirtualHip").transform;
 
-        textLines = System.IO.File.ReadLines("Assets/Scripts/lmList.txt").ToList();
+        textLines = System.IO.File.ReadLines("Assets/PoseDataset/lmList.txt").ToList();
 
         Thread t = new Thread(new ThreadStart(Run));
         t.Start();
