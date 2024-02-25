@@ -353,6 +353,7 @@
 "Assets/Scripts/CalibrationTimer.cs"
 "Assets/Scripts/CharacterSwitcher.cs"
 "Assets/Scripts/CountDownTimer.cs"
+"Assets/Scripts/DontDestroy.cs"
 "Assets/Scripts/ImageReceive.cs"
 "Assets/Scripts/LineCode.cs"
 "Assets/Scripts/PipeServer.cs"

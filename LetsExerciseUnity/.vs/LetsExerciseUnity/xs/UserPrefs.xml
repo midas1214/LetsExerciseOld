@@ -1,17 +1,13 @@
 ﻿<Properties StartupConfiguration="{8C33CD8B-4ADA-A399-9235-9A3E29F627F4}|">
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="485be426-e667-4b88-8627-2a6bf5b46498" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="05cea1d6-b3e1-438c-a1f8-ec1f643e8836" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ButtonEvent.cs">
     <Files>
-      <File FileName="Assets/Scripts/CountDownTimer.cs" Line="37" Column="15" />
       <File FileName="Assets/Scripts/AnimationCode.cs" Line="18" Column="61" />
-      <File FileName="Assets/Scripts/ButtonEvent.cs" Line="30" Column="27" />
-      <File FileName="Assets/Scripts/UDPReceive.cs" Line="85" Column="52" />
+      <File FileName="Assets/Scripts/ButtonEvent.cs" Line="58" Column="1" />
+      <File FileName="Assets/Scripts/UDPReceive.cs" Line="105" Column="46" />
+      <File FileName="Assets/Scripts/ImageReceive.cs" Line="85" Column="39" />
+      <File FileName="Assets/Scripts/DontDestroy.cs" Line="10" Column="39" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,10 +15,18 @@
           <Node name="LetsExerciseUnity" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True" />
+              <Node name="TextMesh Pro" expanded="True">
+                <Node name="Shaders" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

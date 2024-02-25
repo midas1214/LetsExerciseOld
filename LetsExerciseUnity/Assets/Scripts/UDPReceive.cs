@@ -4,16 +4,15 @@ using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
-using TMPro;
-using Unity.VisualScripting;
-using System.Collections;
+
+using UnityEngine.SceneManagement;
 
 
 public class UDPReceive : MonoBehaviour
 {
 
     Thread receiveThread;
-    UdpClient client; 
+    UdpClient client;
     public int port = 5052;
     public bool startRecieving = true;
     public bool printToConsole = false;
@@ -22,18 +21,19 @@ public class UDPReceive : MonoBehaviour
     public ButtonEvent buttonEvent;
 
     public GameObject mouse;
+
     private float[] transformPosition = new float[3];
 
     public RectTransform canvasRectTransform;
-    public Camera mainCam;
 
     float canva_xMin;
     float canva_xMax;
     float canva_yMin;
     float canva_yMax;
-    string[] parts = {"00","00"};
+    string[] parts = { "00", "00" };
 
-    float nearClipPlane;
+    Scene m_Scene;
+    Scene f_Scene;
 
     public void Start()
     {
@@ -47,13 +47,14 @@ public class UDPReceive : MonoBehaviour
         transformPosition[0] = mouse.transform.position.x;
         transformPosition[1] = mouse.transform.position.y;
         transformPosition[2] = mouse.transform.position.z;
+
         canva_xMin = canvasRectTransform.rect.xMin;
         canva_xMax = canvasRectTransform.rect.xMax;
         canva_yMin = canvasRectTransform.rect.yMin;
         canva_yMax = canvasRectTransform.rect.yMax;
 
-        nearClipPlane = mainCam.nearClipPlane;
-
+        m_Scene = SceneManager.GetActiveScene();
+        f_Scene = SceneManager.GetActiveScene();
     }
 
 
@@ -71,23 +72,19 @@ public class UDPReceive : MonoBehaviour
 
                 parts = data.Trim('[', ']').Split(',');
 
-                float normalizedValue1 = normalize(float.Parse(parts[0]), 0, 1280, canva_xMin, canva_xMax);
-                float normalizedValue2 = canva_yMax - normalize(float.Parse(parts[1]), 0, 1000, canva_yMin,canva_yMax);
+                float normalizedValue1 = normalize(float.Parse(parts[0]), 0, 1280, canva_xMin, canva_xMax)+430;
+                float normalizedValue2 = canva_yMax - normalize(float.Parse(parts[1]), 0, 1000, canva_yMin, canva_yMax) - 50;
+                //Debug.Log(normalizedValue1);
+                //Debug.Log(normalizedValue2);
 
+      
+                transformPosition[0] = normalizedValue1;
+                transformPosition[1] = normalizedValue2;
 
-                RunOnMainThread(() =>
-                {
-                    Vector3 screenPos = new Vector3(normalizedValue1 * mainCam.pixelWidth, normalizedValue2 * mainCam.pixelHeight, 0);
+                //Debug.Log(worldPos);
 
-                    Vector3 worldPos = mainCam.ScreenToWorldPoint(screenPos);
-
-                    transformPosition[0] = worldPos.x;
-                    transformPosition[1] = worldPos.y;
-
-                    //Debug.Log(worldPos);
-
-                    if (printToConsole) { print(data); }
-                });
+                if (printToConsole) { print(data); }
+               
 
 
             }
@@ -100,25 +97,40 @@ public class UDPReceive : MonoBehaviour
 
     void Update()
     {
+        m_Scene = SceneManager.GetActiveScene();
+
+        if (m_Scene.buildIndex != f_Scene.buildIndex)
+        {
+
+            mouse = GameObject.Find("Mouse");
+            Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
+            canvasRectTransform = canvas.GetComponent<RectTransform>();
+            transformPosition[0] = mouse.transform.position.x;
+            transformPosition[1] = mouse.transform.position.y;
+            transformPosition[2] = mouse.transform.position.z;
+
+            canva_xMin = canvasRectTransform.rect.xMin;
+            canva_xMax = canvasRectTransform.rect.xMax;
+            canva_yMin = canvasRectTransform.rect.yMin;
+            canva_yMax = canvasRectTransform.rect.yMax;
+            buttonEvent = GetComponent<ButtonEvent>();
+        }
+        f_Scene = SceneManager.GetActiveScene();
 
         mouse.transform.position = new Vector3(transformPosition[0], transformPosition[1], transformPosition[2]);
 
+        // 是否點擊
         if (parts.Length == 3 && buttonEvent.canClickButton == true)
         {
             buttonEvent.Check_if_button();
         }
+
     }
 
-    float normalize (float value, float minFrom, float maxFrom, float minTo, float maxTo)
+    float normalize(float value, float minFrom, float maxFrom, float minTo, float maxTo)
     {
         return (value - minFrom) / (maxFrom - minFrom) * (maxTo - minTo) + minTo;
     }
-
-    private void RunOnMainThread(Action action)
-    {
-        UnityMainThreadDispatcher.Instance().Enqueue(action);
-    }
-
 
 
 }

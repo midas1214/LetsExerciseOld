@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ButtonEvent : MonoBehaviour
 {
@@ -10,29 +11,73 @@ public class ButtonEvent : MonoBehaviour
     public Button[] buttons;
 
     public bool canClickButton = true;
+    Scene m_Scene;
+    Scene f_Scene;
+
+    int numOfButton;
 
     void Start()
     {
-        //button1.onClick.AddListener(Button1Click);
+        m_Scene = SceneManager.GetActiveScene();
+        f_Scene = SceneManager.GetActiveScene();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        m_Scene = SceneManager.GetActiveScene();
+
+        if (m_Scene.buildIndex != f_Scene.buildIndex)
+        {
+
+            SetButtonList();
+        }
+        f_Scene = SceneManager.GetActiveScene();
+
+
+    }
+
+    void SetButtonList()
+    {
+        if (m_Scene.name == "GameStart")
+        {
+            numOfButton = 1;
+        }
+
+        else if (m_Scene.name == "Trainer")
+        {
+            numOfButton = 1;
+        }
+        mouse = GameObject.Find("Mouse");
+
+        buttons = new Button[numOfButton];
+        for (var i = 1; i <= numOfButton; i++)
+        {
+            Button btn = GameObject.Find("Btn" + i).GetComponent<Button>();
+
+            buttons[i-1] = btn; 
+        }
 
     }
 
     private void ButtonClick(Button btn)
     {
-
-        if (btn.name == "1"){
-
+        if ( m_Scene.name == "GameStart")
+        {
+            if (btn.name == "Btn1")
+            {
+                SceneManager.LoadScene(1);
+            }
 
         }
-        else if (btn.name == "2")
+        
+        else if (m_Scene.name == "Trainer")
         {
+            if (btn.name == "Btn1")
+            {
+                SceneManager.LoadScene(2);
+            }
 
         }
 

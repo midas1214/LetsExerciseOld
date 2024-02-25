@@ -71,6 +71,7 @@
     <Compile Include="Assets/Scripts/CalibrationTimer.cs" />
     <Compile Include="Assets/unity-chan!/Unity-chan! Model/Scripts/AutoBlink.cs" />
     <Compile Include="Assets/Scripts/LineCode.cs" />
+    <Compile Include="Assets/Scripts/DontDestroy.cs" />
     <Compile Include="Assets/Scripts/UnityMainThreadDispatcher.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -95,7 +96,7 @@
     <None Include="Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc" />
     <None Include="Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc" />
     <None Include="Assets/unity-chan!/Unity-chan! Model/Art/UnityChanShader/Shader/Unitychan_chara_hada_blend.shader" />
-    <None Include="Assets/pose_dataset/lmList.txt" />
+    <None Include="Assets/PoseDataset/lmList.txt" />
     <None Include="Assets/TextMesh Pro/Resources/LineBreaking Following Characters.txt" />
     <None Include="Assets/unity-chan!/Unity-chan! Model/Art/UnityChanShader/Shader/Unitychan_chara_eye.shader" />
     <None Include="Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile Masking.shader" />
