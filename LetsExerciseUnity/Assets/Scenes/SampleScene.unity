@@ -650,7 +650,6 @@ MonoBehaviour:
   buttonEvent: {fileID: 116107075}
   mouse: {fileID: 348654469}
   canvasRectTransform: {fileID: 1081063079}
-  mainCam: {fileID: 963194227}
 --- !u!114 &116107072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -686,7 +685,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116107070}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2bf0d5c1ef0b4d3abf5c48a6a8e7f46, type: 3}
   m_Name: 
@@ -2562,7 +2561,7 @@ Canvas:
   m_GameObject: {fileID: 1081063075}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 963194227}
   m_PlaneDistance: 100
   m_PixelPerfect: 0

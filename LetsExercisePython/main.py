@@ -6,7 +6,9 @@ from utils import find_angle, get_landmark_features
 from pose_dataset import get_pose_db
 import json
 
+# 取得資料庫
 pose_db = get_pose_db()
+
 check_point = pose_db["pose_name"]["check_angle"]
 file_path = pose_db["pose_name"]["path"]
 video_frame_width = pose_db["pose_name"]["video_size"]["width"]
@@ -69,6 +71,7 @@ counter = 0 #video_counter
 while counter < len(lines):
     success, img = cap.read()
     img = cv2.flip(img, 1)
+    # 抓身體的點
     img = pose_detector.findPose(img)
     lmList, bboxInfo = pose_detector.findPosition(img)
 
@@ -81,7 +84,10 @@ while counter < len(lines):
     #傳送資料
     tcp_sock.sendall(bytes (data,encoding='utf-8'))
 
+    # 抓手的點
     hands, imgg = hand_detector.findHands(img)
+
+    #cv2.imshow("Image",imgg)
 
     if hands:
         hand = hands[0] 
