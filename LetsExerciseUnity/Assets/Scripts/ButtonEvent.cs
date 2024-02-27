@@ -10,6 +10,8 @@ public class ButtonEvent : MonoBehaviour
     public GameObject mouse;
     public Button[] buttons;
 
+    public int forInvestigate = 0;
+
     public bool canClickButton = true;
     Scene m_Scene;
     Scene f_Scene;
@@ -49,6 +51,23 @@ public class ButtonEvent : MonoBehaviour
         {
             numOfButton = 1;
         }
+        else if (m_Scene.name == "Intro")
+        {
+            numOfButton = 0;
+        }
+        else if (m_Scene.name == "SelectSex")
+        {
+            numOfButton = 3;
+        }
+        else if (m_Scene.name == "SelectPart")
+        {
+            numOfButton = 6;
+        }
+        else if (m_Scene.name == "Investigation")
+        {
+            numOfButton = 0;
+        }
+
         mouse = GameObject.Find("Mouse");
 
         buttons = new Button[numOfButton];
@@ -58,6 +77,8 @@ public class ButtonEvent : MonoBehaviour
 
             buttons[i-1] = btn; 
         }
+
+
 
     }
 
@@ -76,7 +97,51 @@ public class ButtonEvent : MonoBehaviour
         {
             if (btn.name == "Btn1")
             {
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene(3);
+            }
+
+        }
+        else if (m_Scene.name == "SelectSex")
+        {
+            if(btn.name == "Btn1")
+            {
+
+            }
+            else if (btn.name == "Btn2")
+            {
+
+            }
+            else if (btn.name == "Btn3")
+            {
+                SceneManager.LoadScene(4);
+            }
+
+        }
+        else if (m_Scene.name == "SelectPart")
+        {
+            if (btn.name == "Btn1")
+            {
+                forInvestigate = 1;
+            }
+            else if (btn.name == "Btn2")
+            {
+                forInvestigate = 2;
+            }
+            else if (btn.name == "Btn3")
+            {
+                forInvestigate = 3;
+            }
+            else if (btn.name == "Btn4")
+            {
+                forInvestigate = 3;
+            }
+            else if (btn.name == "Btn5")
+            {
+                forInvestigate = 4;
+            }
+            else if (btn.name == "Btn6")
+            {
+                SceneManager.LoadScene(5);
             }
 
         }
