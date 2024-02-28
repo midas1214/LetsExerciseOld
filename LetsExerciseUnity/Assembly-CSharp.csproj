@@ -65,19 +65,20 @@
     <Compile Include="Assets/Scripts/CountDownTimer.cs" />
     <Compile Include="Assets/Scripts/Avatar.cs" />
     <Compile Include="Assets/unity-chan!/Unity-chan! Model/Scripts/SpringBone.cs" />
+    <Compile Include="Assets/Scripts/InvestigateSet.cs" />
     <Compile Include="Assets/Scripts/CharacterSwitcher.cs" />
     <Compile Include="Assets/Scripts/AutoSave.cs" />
     <Compile Include="Assets/Scripts/PipeServer.cs" />
     <Compile Include="Assets/Scripts/CalibrationTimer.cs" />
     <Compile Include="Assets/unity-chan!/Unity-chan! Model/Scripts/AutoBlink.cs" />
     <Compile Include="Assets/Scripts/LineCode.cs" />
-    <Compile Include="Assets/Scripts/DontDestroy.cs" />
-    <Compile Include="Assets/Scripts/UnityMainThreadDispatcher.cs" />
-    <Compile Include="Assets/Scripts/InvestigateSet.cs" />
-    <Compile Include="Assets/Scripts/Test/Test1.cs" />
-    <Compile Include="Assets/Scripts/Test/Test2.cs" />
     <Compile Include="Assets/Scripts/Test/Test3.cs" />
+    <Compile Include="Assets/Scripts/DontDestroy.cs" />
+    <Compile Include="Assets/Scripts/Test/Test1.cs" />
     <Compile Include="Assets/Scripts/Test/Test4.cs" />
+    <Compile Include="Assets/Scripts/Test/Test2.cs" />
+    <Compile Include="Assets/Scripts/UnityMainThreadDispatcher.cs" />
+    <Compile Include="Assets/Scripts/Test/Test5.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/unity-chan!/Unity-chan! Model/Art/UnityChanShader/Shader/Unitychan_chara_fuku.shader" />

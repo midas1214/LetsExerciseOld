@@ -10,7 +10,7 @@ public class ButtonEvent : MonoBehaviour
     public GameObject mouse;
     public Button[] buttons;
 
-    public int forInvestigate = 0;
+    public int forInvestigate = 1;
 
     public bool canClickButton = true;
     Scene m_Scene;
