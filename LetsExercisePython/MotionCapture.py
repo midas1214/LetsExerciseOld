@@ -16,16 +16,12 @@ while True:
        lmString = ''
        for lm in lmList:
           lmString += f'{lm[0]},{img.shape[0] - lm[1]},{lm[2]},'
-       postList.append(lmString) # append frames
+       with open("lmList.txt",'a') as f:
+          f.write(lmString)
+          f.write("\r\n")
        
     cv2.imshow("Image",img)
 
     if cv2.waitKey(1) == ord('q'):
-       with open("lmList.txt",'w') as f:
-          f.writelines(["%s\n" % item for item in postList])
-       break
+         break
        
-
-lmListFile.close()
-bboxInfoFile.close()
-
