@@ -362,6 +362,7 @@
 "Assets/Scripts/Test/Test2.cs"
 "Assets/Scripts/Test/Test3.cs"
 "Assets/Scripts/Test/Test4.cs"
+"Assets/Scripts/Test/Test5.cs"
 "Assets/Scripts/UDPReceive.cs"
 "Assets/Scripts/UnityMainThreadDispatcher.cs"
 "Assets/unity-chan!/Unity-chan! Model/Scripts/AutoBlink.cs"
