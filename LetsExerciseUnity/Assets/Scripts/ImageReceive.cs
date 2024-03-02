@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
@@ -19,20 +18,29 @@ public class ImageReceive : MonoBehaviour
     byte[] imageDatas = new byte[0];
     Texture2D tex;
 
-    Scene scene;
+    Scene m_Scene;
 
     // Start is called before the first frame update
     void Start()
     {
         InitTcp();
         tex = new Texture2D(1280, 720);
-        scene = SceneManager.GetActiveScene();
+
+        m_Scene = SceneManager.GetActiveScene();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        m_Scene = SceneManager.GetActiveScene();
+        if (m_Scene.name == "SampleScene")
+        {
+            img = GameObject.Find("camera").GetComponent<RawImage>();
+            tex.LoadImage(imageDatas);
+            img.texture = tex;
+
+        }
+
     }
 
     void InitTcp()
@@ -79,16 +87,4 @@ public class ImageReceive : MonoBehaviour
     {
         public byte[] image;
     }
-
-    private void FixedUpdate()
-    {
-        if (scene.name == "SampleScene")
-        {
-            tex.LoadImage(imageDatas);
-            img.texture = tex;
-
-        }
-        
-    }
-
 }
