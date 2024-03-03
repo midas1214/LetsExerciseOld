@@ -59,19 +59,20 @@ class PoseDetector:
         self.results = self.pose.process(imgRGB)
 
         # which points should be connected to each other
-        POSE_CONNECTIONS = frozenset([(0, 1), (0, 2), (2, 4), (1, 3), (3, 5),(1, 7),
+        POSE_CONNECTIONS_WITHOUT = frozenset([(0, 1), (0, 2), (2, 4), (1, 3), (3, 5), (1, 7),
                                       (0, 6), (7, 9), (6, 8), (9, 11), (8, 10), (11, 13),
                                       (11, 15), (13, 15), (10, 12), (10, 14), (12, 14)])
 
         if self.results.pose_landmarks:
             if draw:
-                pose_landmarks_without = copy.copy(self.results.pose_landmarks)  # mp.drawing_utils
+                # old landmarks are kept
+                pose_landmarks_without = copy.deepcopy(self.results.pose_landmarks)  # mp.drawing_utils
                 # pop the unwanted points (head, hand...)
                 for i in range(11):
                     pose_landmarks_without.landmark.pop(0)
                 for i in range(6):
                     pose_landmarks_without.landmark.pop(6)
-                self.mpDraw.draw_landmarks(img, pose_landmarks_without, POSE_CONNECTIONS)
+                self.mpDraw.draw_landmarks(img, pose_landmarks_without, POSE_CONNECTIONS_WITHOUT)
 
         return img
 
@@ -99,13 +100,20 @@ class PoseDetector:
             cx, cy = bbox[0] + (bbox[2] // 2), \
                      bbox[1] + bbox[3] // 2
 
-            self.bboxInfo = {"bbox": bbox, "center": (cx, cy)}
+            self.bboxInfo = {"bbox": bbox, "center": (cx, cy), "upper_left_corner": (x1, y1),
+                             "width": x2 - x1, "height": y2 - y1}
 
             if draw:
                 cv2.rectangle(img, bbox, (255, 0, 255), 3)
                 cv2.circle(img, (cx, cy), 5, (255, 0, 0), cv2.FILLED)
 
         return self.lmList, self.bboxInfo
+
+    def cropCamera(self, img, x, y, w, h):
+        # 裁切區域的 x 與 y 座標（左上角）
+        # 裁切區域的長度 w 與寬度 h
+        crop_img = img[y : y + h, x : x + w]
+        return crop_img
 
     def findDistance(self, p1, p2, img=None, color=(255, 0, 255), scale=5):
         """

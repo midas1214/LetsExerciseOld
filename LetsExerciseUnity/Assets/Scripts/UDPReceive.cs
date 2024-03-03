@@ -11,12 +11,12 @@ using UnityEngine.SceneManagement;
 public class UDPReceive : MonoBehaviour
 {
 
-    Thread receiveThread;
-    UdpClient client;
-    public int port = 5052;
+    Thread receiveHandThread, receiveAngleThread;
+    UdpClient clientHand, clientAngle;
+    public int portHand = 5052, portAngle = 5051;
     public bool startRecieving = true;
     public bool printToConsole = false;
-    public string data;
+    public string dataHand, dataAngle;
 
     public ButtonEvent buttonEvent;
 
@@ -37,11 +37,15 @@ public class UDPReceive : MonoBehaviour
 
     public void Start()
     {
+        receiveHandThread = new Thread(
+            new ThreadStart(ReceiveHandData));
+        receiveHandThread.IsBackground = true;
+        receiveHandThread.Start();
 
-        receiveThread = new Thread(
-            new ThreadStart(ReceiveData));
-        receiveThread.IsBackground = true;
-        receiveThread.Start();
+        receiveAngleThread = new Thread(
+            new ThreadStart(ReceiveAngleData));
+        receiveAngleThread.IsBackground = true;
+        receiveAngleThread.Start();
 
 
         transformPosition[0] = mouse.transform.position.x;
@@ -58,19 +62,19 @@ public class UDPReceive : MonoBehaviour
     }
 
 
-    // receive thread
-    private void ReceiveData()
+    // receive hand thread
+    private void ReceiveHandData()
     {
-        client = new UdpClient(port);
+        clientHand = new UdpClient(portHand);
         while (startRecieving)
         {
             try
             {
                 IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
-                byte[] dataByte = client.Receive(ref anyIP);
-                data = Encoding.UTF8.GetString(dataByte);
+                byte[] dataByte = clientHand.Receive(ref anyIP);
+                dataHand = Encoding.UTF8.GetString(dataByte);
 
-                parts = data.Trim('[', ']').Split(',');
+                parts = dataHand.Trim('[', ']').Split(',');
 
                 float normalizedValue1 = normalize(float.Parse(parts[0]), 0, 1280, canva_xMin, canva_xMax)+430;
                 float normalizedValue2 = canva_yMax - normalize(float.Parse(parts[1]), 0, 1000, canva_yMin, canva_yMax) - 50;
@@ -83,8 +87,46 @@ public class UDPReceive : MonoBehaviour
 
                 //Debug.Log(worldPos);
 
-                if (printToConsole) { print(data); }
+                if (printToConsole) { print(dataHand); }
                
+
+
+            }
+            catch (Exception err)
+            {
+                print(err.ToString());
+            }
+        }
+    }
+
+    // receive thread
+    private void ReceiveAngleData()
+    {
+        clientAngle = new UdpClient(portAngle);
+        while (startRecieving)
+        {
+            try
+            {
+                IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 1);
+                byte[] dataByte = clientAngle.Receive(ref anyIP);
+                dataAngle = Encoding.UTF8.GetString(dataByte);
+                Debug.Log(dataAngle);
+
+                //parts = dataHand.Trim('[', ']').Split(',');
+
+                //float normalizedValue1 = normalize(float.Parse(parts[0]), 0, 1280, canva_xMin, canva_xMax) + 430;
+                //float normalizedValue2 = canva_yMax - normalize(float.Parse(parts[1]), 0, 1000, canva_yMin, canva_yMax) - 50;
+                ////Debug.Log(normalizedValue1);
+                ////Debug.Log(normalizedValue2);
+
+
+                //transformPosition[0] = normalizedValue1;
+                //transformPosition[1] = normalizedValue2;
+
+                ////Debug.Log(worldPos);
+
+                //if (printToConsole) { print(dataHand); }
+
 
 
             }

@@ -35,7 +35,7 @@ public class ImageReceive : MonoBehaviour
         m_Scene = SceneManager.GetActiveScene();
         if (m_Scene.name == "SampleScene")
         {
-            img = GameObject.Find("camera").GetComponent<RawImage>();
+            img = GameObject.Find("PlayerCamera").GetComponent<RawImage>();
             tex.LoadImage(imageDatas);
             img.texture = tex;
 
