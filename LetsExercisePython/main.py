@@ -47,6 +47,7 @@ if __name__ == "__main__":
 
     # Get the actual width and height of the webcam frames
     frame_width = int(cap.get(3))
+    print(frame_width)
     frame_height = int(cap.get(4))
 
     # Pose Detector
@@ -77,14 +78,16 @@ if __name__ == "__main__":
         if counter >= len(lines):
             counter = 0
         success, img = cap.read()
+        # 640 * 480
+        # img = cv2.resize(img,(480, 720))
         img = cv2.flip(img, 1)
         # 抓身體的點
         img = pose_detector.findPose(img, draw=True)
         lmList, bboxInfo = pose_detector.findPosition(img, draw=True)
 
         # cut the camera by bounding box
-        img = pose_detector.cropCamera(img, bboxInfo["upper_left_corner"][0] - 50, bboxInfo["upper_left_corner"][1] - 50,
-                                       bboxInfo["width"] + 100, bboxInfo["height"] + 200)
+        # img = pose_detector.cropCamera(img, bboxInfo["upper_left_corner"][0] - 50, bboxInfo["upper_left_corner"][1] - 50,
+        #                                bboxInfo["width"] + 100, bboxInfo["height"] + 200)
 
         #tcp
         img_data = {'image': cv2.imencode('.jpg', img)[1].ravel().tolist()}
@@ -98,13 +101,13 @@ if __name__ == "__main__":
         # 抓手的點
         hands, imgg = hand_detector.findHands(img)
 
-        #cv2.imshow("Image",imgg)
+        cv2.imshow("Image",imgg)
 
         if hands:
             hand = hands[0]
             hand_lmlist = hand['lmList']
             fingers = hand_detector.fingersUp(hand)
-            if fingers == [0,1,0,0,0]:
+            if fingers == [1,1,1,1,1]:
                 # 傳送食指 x , y 值
                 index_finger = hand_lmlist[8][0], hand_lmlist[8][1]
                 index_finger_json = json.dumps(index_finger)

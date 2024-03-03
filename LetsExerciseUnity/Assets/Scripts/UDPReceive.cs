@@ -30,6 +30,8 @@ public class UDPReceive : MonoBehaviour
     float canva_xMax;
     float canva_yMin;
     float canva_yMax;
+    float canva_width;
+    float canva_height;
     string[] parts = { "00", "00" };
 
     Scene m_Scene;
@@ -48,14 +50,18 @@ public class UDPReceive : MonoBehaviour
         receiveAngleThread.Start();
 
 
-        transformPosition[0] = mouse.transform.position.x;
-        transformPosition[1] = mouse.transform.position.y;
-        transformPosition[2] = mouse.transform.position.z;
+        transformPosition[0] = mouse.transform.localPosition.x;
+        transformPosition[1] = mouse.transform.localPosition.y;
+        transformPosition[2] = mouse.transform.localPosition.z;
 
         canva_xMin = canvasRectTransform.rect.xMin;
+        Debug.Log(canva_xMin);
         canva_xMax = canvasRectTransform.rect.xMax;
+        Debug.Log(canva_xMax);
         canva_yMin = canvasRectTransform.rect.yMin;
         canva_yMax = canvasRectTransform.rect.yMax;
+        canva_width = canvasRectTransform.rect.width;
+        canva_height = canvasRectTransform.rect.height;
 
         m_Scene = SceneManager.GetActiveScene();
         f_Scene = SceneManager.GetActiveScene();
@@ -76,10 +82,10 @@ public class UDPReceive : MonoBehaviour
 
                 parts = dataHand.Trim('[', ']').Split(',');
 
-                float normalizedValue1 = normalize(float.Parse(parts[0]), 0, 1280, canva_xMin, canva_xMax)+430;
-                float normalizedValue2 = canva_yMax - normalize(float.Parse(parts[1]), 0, 1000, canva_yMin, canva_yMax) - 50;
-                //Debug.Log(normalizedValue1);
-                //Debug.Log(normalizedValue2);
+                float normalizedValue1 = normalize(float.Parse(parts[0]), 0, 640, canva_xMin, canva_xMax) + (canva_width / 2);
+                float normalizedValue2 = canva_yMax - normalize(float.Parse(parts[1]), 0, 480, canva_yMin, canva_yMax);
+                string s = normalizedValue1.ToString() + "," + normalizedValue2.ToString();
+                Debug.Log(s);
 
       
                 transformPosition[0] = normalizedValue1;
@@ -110,7 +116,7 @@ public class UDPReceive : MonoBehaviour
                 IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 1);
                 byte[] dataByte = clientAngle.Receive(ref anyIP);
                 dataAngle = Encoding.UTF8.GetString(dataByte);
-                Debug.Log(dataAngle);
+                // Debug.Log(dataAngle);
 
                 //parts = dataHand.Trim('[', ']').Split(',');
 
@@ -147,9 +153,9 @@ public class UDPReceive : MonoBehaviour
             mouse = GameObject.Find("Mouse");
             Canvas canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
             canvasRectTransform = canvas.GetComponent<RectTransform>();
-            transformPosition[0] = mouse.transform.position.x;
-            transformPosition[1] = mouse.transform.position.y;
-            transformPosition[2] = mouse.transform.position.z;
+            transformPosition[0] = mouse.transform.localPosition.x;
+            transformPosition[1] = mouse.transform.localPosition.y;
+            transformPosition[2] = mouse.transform.localPosition.z;
 
             canva_xMin = canvasRectTransform.rect.xMin;
             canva_xMax = canvasRectTransform.rect.xMax;
