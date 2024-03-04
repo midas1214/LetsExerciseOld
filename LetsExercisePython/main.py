@@ -101,7 +101,7 @@ if __name__ == "__main__":
         # 抓手的點
         hands, imgg = hand_detector.findHands(img)
 
-        cv2.imshow("Image",imgg)
+        #cv2.imshow("Image",imgg)
 
         if hands:
             hand = hands[0]
@@ -146,5 +146,3 @@ if __name__ == "__main__":
 
         if cv2.waitKey(30) == ord('q'):
             break  # press q to quit
-
-        print("hi")
