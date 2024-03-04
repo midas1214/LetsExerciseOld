@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\Test\Test4.cs" />
     <Compile Include="Assets\Scripts\Test\Test2.cs" />
     <Compile Include="Assets\Scripts\UnityMainThreadDispatcher.cs" />
+    <Compile Include="Assets\Scripts\CanvaSizeManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\unity-chan!\Unity-chan! Model\Art\UnityChanShader\Shader\Unitychan_chara_fuku.shader" />

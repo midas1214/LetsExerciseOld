@@ -22,7 +22,6 @@ public class ButtonEvent : MonoBehaviour
     {
         m_Scene = SceneManager.GetActiveScene();
         f_Scene = SceneManager.GetActiveScene();
-
     }
 
     // Update is called once per frame
@@ -32,12 +31,9 @@ public class ButtonEvent : MonoBehaviour
 
         if (m_Scene.buildIndex != f_Scene.buildIndex)
         {
-
             SetButtonList();
         }
         f_Scene = SceneManager.GetActiveScene();
-
-
     }
 
     void SetButtonList()

@@ -350,6 +350,7 @@
 "Assets/Scripts/Avatar.cs"
 "Assets/Scripts/ButtonEvent.cs"
 "Assets/Scripts/CalibrationTimer.cs"
+"Assets/Scripts/CanvaSizeManager.cs"
 "Assets/Scripts/CharacterSwitcher.cs"
 "Assets/Scripts/CountDownTimer.cs"
 "Assets/Scripts/DontDestroy.cs"
